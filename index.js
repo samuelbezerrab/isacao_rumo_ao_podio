@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-const randomNumber = Math.floor(Math.random() * (15000 - 10000 + 1)) + 10000;
+function randomNumber() {
+    return Math.floor(10000 + Math.random() * 5000);
+}
 
 (async () => {
 
+    let rounds = 0
     const browser = await puppeteer.launch({ headless: false }); // Set headless to `true` to run in the background
 
     while (true) {
@@ -19,15 +22,21 @@ const randomNumber = Math.floor(Math.random() * (15000 - 10000 + 1)) + 10000;
             const playButton = await page.waitForSelector('xpath/' + '//*[@id="AlbumTrackList"]/ul/div/div/li[4]/div[1]/p/span[1]', { visible: true });
             if (playButton) {
                 playButton.click()
-                await sleep(randomNumber)
-                console.log('Success')
+
+                const time_to_wait =  randomNumber()
+                await sleep(time_to_wait)
+                
                 await page.close()
+                rounds++
+                console.log('Success', {
+                    time_to_wait : time_to_wait,
+                    rounds: rounds
+                })
             } else {
                 console.log('PlayButton not found', playButton)
             }
         } catch {
 
         }
-
     }
 })()
