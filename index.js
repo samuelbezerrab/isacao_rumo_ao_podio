@@ -8,7 +8,10 @@ function randomNumber() {
 (async () => {
 
     let rounds = 0
-    const browser = await puppeteer.launch({ headless: false }); // Set headless to `true` to run in the background
+    const browser = await puppeteer.launch({ 
+        executablePath: '', // C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe || /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+        headless: false 
+    }); // Set headless to `true` to run in the background
 
     while (true) {
         // Colocar try catch por causa do timeout
