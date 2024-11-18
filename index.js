@@ -4,10 +4,12 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 const randomNumber = Math.floor(Math.random() * (15000 - 10000 + 1)) + 10000;
 
 (async () => {
+
+    const browser = await puppeteer.launch({ headless: false }); // Set headless to `true` to run in the background
+
     while (true) {
         // Colocar try catch por causa do timeout
         try {
-            const browser = await puppeteer.launch({ headless: false }); // Set headless to `true` to run in the background
             const page = await browser.newPage();
 
             // Open the target URL
@@ -19,7 +21,7 @@ const randomNumber = Math.floor(Math.random() * (15000 - 10000 + 1)) + 10000;
                 playButton.click()
                 await sleep(randomNumber)
                 console.log('Success')
-                await browser.close() // await page.reload()
+                await page.close()
             } else {
                 console.log('PlayButton not found', playButton)
             }
