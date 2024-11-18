@@ -13,7 +13,8 @@ function randomNumber() {
     while (true) {
         // Colocar try catch por causa do timeout
         try {
-            const page = await browser.newPage();
+            const page = await browser.newPage()
+            await page.setCacheEnabled(false)
 
             // Open the target URL
             await page.goto('https://suamusica.com.br/playlist/conectavozbahia2024/conecta-voz-show-feira-de-santana-1');
