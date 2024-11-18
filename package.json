@@ -1,0 +1,15 @@
+{
+  "name": "isacao_rumo_ao_podio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "pm2": "^5.4.3",
+    "puppeteer": "^23.8.0"
+  }
+}
